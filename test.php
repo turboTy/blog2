@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require_once("./smarty/libs/Smarty.class.php");
 
