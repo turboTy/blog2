@@ -1,0 +1,60 @@
+/************ login.php **************/
+/*** log-main部分 ***/
+.log-main {
+	margin: 0;
+	padding: 0;
+}
+
+.log-main .container {
+	margin: 30px auto;
+	min-height: 360px;
+} 
+
+.log-main .login-window {
+	/*width: 100%;*/
+	/*height: 100%;*/
+	min-width: 300px;
+	min-height: 360px;
+	background-color: #ddd;
+	box-shadow: 5px 5px 12px rgba(0,0,0,0.1);
+	border-radius: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+
+.login-window table {
+	min-height: 300px;
+	font-size: 15px;
+	margin-right: 20px;
+	/*margin: auto;*/
+}
+
+.login-window table span {
+	font: normal bold 18px/1.5em "microsoft yahei";
+	color: #337ab7;
+}
+
+.login-items {
+	padding-left: 22px;
+}
+
+.login-items input {
+	vertical-align: middle;
+	margin: 0;
+}
+
+.login-items label,
+.login-items a {
+	font-size: 6px;
+	font-weight: 200;
+}
+
+.login-items a {
+	line-height: 2em;
+}
+
+.login-window .check_code {
+	width: 100px!important;
+}
