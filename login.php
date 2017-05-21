@@ -47,7 +47,7 @@
                             <td align="right">验证码：</td>
                             <td>
                                 <input type="text" name="username" class="form-control check_code fl">
-                                <img src="#" alt="" class="check_code_img fl">
+                                <img src="#" alt="验证码" class="check_code_img fl">
                             </td>
                         </tr>
                         <tr>
