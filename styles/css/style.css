@@ -3,6 +3,7 @@
 .log-main {
 	margin: 0;
 	padding: 0;
+	/*background: url(../images/starry_sky.png) center no-repeat;*/
 }
 
 .log-main .container {
@@ -15,7 +16,7 @@
 	/*height: 100%;*/
 	min-width: 300px;
 	min-height: 360px;
-	background-color: #ffdfff;
+	background-color: #ddd;
 	box-shadow: 5px 5px 12px rgba(0,0,0,0.1);
 	border-radius: 2%;
 	display: flex;
