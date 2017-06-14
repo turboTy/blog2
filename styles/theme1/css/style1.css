@@ -1,4 +1,8 @@
 /************ login.php **************/
+body {
+	background: url(../images/body-bg3.png);
+}
+
 /*** log-main部分 ***/
 .log-main {
 	margin: 0;
@@ -67,6 +71,11 @@
 	height: 45px;
 	line-height: 45px;
 	background-color: #ddd;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	min-width: 1366px;
 }
 
 .header-login > .container {
@@ -88,8 +97,13 @@
 	margin: 0!important;
 }
 
+.header-slider {
+	margin-top: 45px;
+}
+
 .header-slider .container {
-	width: 100%;
+	width: 75%;
+	min-width: 1000px;
 	margin: 0;
 	padding: 0;
 }
@@ -101,20 +115,87 @@
 .header-slider .container,
 .header-slider .row,
 .header-slider .row > div {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 }
 
+#carousel-example-generic {
+	position: relative;
+}
 
+.slider-window {
+	height: 100%;
+	width: 250px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,0.6);
+	color: #fff;
+	position: absolute;
+	padding: 25px 15px;
+	right: 110px;
+	top: 0;
+}
 
+.slider-window > p {
+	font-size: 15px;
+	line-height: 24px;
+}
 
+/*t-main*/
+.t-main {
+	width: 75%;
+	min-width: 1000px;
+	margin: 20px auto;
+	padding: 20px 0;
+	background-color: #fff;
+	min-height: 1000px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
 
+.main-left {
+	width:;
+}
 
+.header-login .form-control {
+	/*height: 26px;*/
+	width: 50%;
+	max-width: 350px;
+}
 
+.header-login .col-md-offset-1 > .form-control {
+	border-radius: 5px 0 0 5px;
+}
 
+.header-login .col-md-offset-1 > .btn-default {
+	border-radius: 0 5px 5px 0;
+	border-left: none;
+}
 
+.header-login .col-md-offset-1 {
+	height: 45px;
+	display: flex;
+	align-items: center;
+}
 
+.header-login .col-md-offset-1 > h2 {
+	line-height: 45px;
+	margin: 0 20px 0 0;
+	font-family: "STHUPO";
+	color: rgb(98, 158, 187);
+}
 
+.header-login .col-md-3 {
+	text-align: right;
+}
+
+.main-left {
+	width: 100%;
+}
+
+.main-left-t {
+	width: 100%;
+	height: 360px;
+}
 
 
 
