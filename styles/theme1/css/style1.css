@@ -59,3 +59,72 @@
 .login-window .check_code {
 	width: 100px!important;
 }
+
+
+/***************t_index.html***************/
+/*t-header*/
+.header-login {
+	height: 45px;
+	line-height: 45px;
+	background-color: #ddd;
+}
+
+.header-login > .container {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.header-login .btn-primary {
+	padding: 2px 5px;
+}
+
+.header-login label {
+	margin: 0;
+}
+
+.theme_sel {
+	vertical-align: middle;
+	margin: 0!important;
+}
+
+.header-slider .container {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.carousel-inner img {
+	width: 100%;
+}
+
+.header-slider .container,
+.header-slider .row,
+.header-slider .row > div {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

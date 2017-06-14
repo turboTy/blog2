@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>登录页面</title>   
         <!-- Bootstrap -->
-        <link href="styles/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/theme1/css/bootstrap.min.css" rel="stylesheet">
         
         <!--你自己的样式文件 -->
-        <link href="styles/css/reset.css" rel="stylesheet">
-        <link href="styles/css/style.css" rel="stylesheet">   
+        <link href="styles/theme1/css/reset.css" rel="stylesheet">
+        <link href="styles/theme1/css/style1.css" rel="stylesheet">   
          
         <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
         <!--[if lt IE 9]>
