@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//configs/configs.php=UTF-8
+encoding//configs/db_conn.php=UTF-8
 encoding//include/Smarty_inc.php=UTF-8
 encoding//libs/mysql.func.php=UTF-8
+encoding/<project>=UTF-8

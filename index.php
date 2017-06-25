@@ -17,6 +17,12 @@ var_dump($row);
 
 echo "<hr>"; */
 
+echo date("Y-m-d H:i:s",time());
+
+echo "<br>"; 
+
+echo md5(sha1("admin1233"));
+
 
 
 

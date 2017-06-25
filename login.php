@@ -52,8 +52,8 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="login-items">
-                                <label><input type="radio" name="auto_pwd">记住密码</label>&nbsp;
-                                <label><input type="radio" name="auto_login">自动登录</label>
+                                <label><input type="checkbox" name="auto_pwd">&nbsp;<em>记住密码</em></label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="auto_login">&nbsp;<em>自动登录<em></label>
                                 <a href="#" class="fr">忘记密码?</a>
                             </td>
                         </tr>
