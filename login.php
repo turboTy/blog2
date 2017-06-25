@@ -20,6 +20,7 @@
     </head>
     <body>
     <?php
+    session_start();
     require_once("./configs/db_conn.php");
     require_once("./smarty/libs/Smarty.class.php");
     
@@ -32,6 +33,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 login-window">
                     <table cellpadding="0" cellpadding="0" width="70%" border="0"> 
+                    <form method="post" action="">
                         <tr>
                             <td colspan="2" align="center"><span>用户登录<span></td>
                         </tr>
@@ -47,7 +49,8 @@
                             <td align="right">验证码：</td>
                             <td>
                                 <input type="text" name="username" class="form-control check_code fl">
-                                <img src="#" alt="验证码" class="check_code_img fl">
+                                <img src="libs/verifyCode.func.php" alt="验证码" class="check_code_img fl"  rel="tooltips"
+                                title="点击刷新验证码" onclick="this.src=this.src+'?'+Math.random()">
                             </td>
                         </tr>
                         <tr>
@@ -63,6 +66,7 @@
                                 <input type="button" name="reset" value="重 置"  class="btn btn-primary">
                             </td>
                         </tr>
+                    </form>
                     </table>
                 </div>
                 <div class="col-md-4">&nbsp;</div>

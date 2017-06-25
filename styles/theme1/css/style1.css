@@ -50,6 +50,10 @@ body {
 	margin: 0;
 }
 
+.check_code_img {
+	margin: 4px 0;
+}
+
 .login-items label,
 .login-items a {
 	font-size: 12px;
@@ -61,7 +65,7 @@ body {
 }
 
 .login-window .check_code {
-	width: 100px!important;
+	width: 110px!important;
 }
 
 .login-window table tr {

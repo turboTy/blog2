@@ -21,5 +21,5 @@ $t->assign("str",$str);
 
 $t->display("test.html");
 
-echo md5(sha1("845383047"));
+echo md5(sha1("admin123"));
 
