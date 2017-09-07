@@ -29,6 +29,7 @@ function sql_select_getonevalue($table, $field, $condition, &$value)
     return $value;
 }
 
+
 /**自定义在数据库中获取两个值的方法
  * @param string $table
  * @param string $field1
@@ -64,6 +65,7 @@ function sql_select_get2value($table, $field1, $field2, $condition, &$value1, &$
     return $value2;  
 }
 
+
 /**通过左连接的方式获取一系列值
  * @param string $table1
  * @param string $table2
@@ -95,6 +97,49 @@ function sql_leftjoin_getonevalue($table1, $table2, $condition1, $condition2, &$
     return $array;
 }
 
+
+/**封装查询数据库生成下拉菜单的方法
+ * @param unknown $id
+ * @param unknown $name
+ * @param unknown $table
+ * @param unknown $condition
+ * @param unknown $selected_id
+ * @param unknown $value
+ * @return string
+ */
+function add_option($id, $name, $table, $condition, $selected_id, &$value)
+{
+    global $db;
+    
+    $sql = "select $id as id,$name as name from $table where $condition ";
+    $result = $db->query($sql);
+    
+    if(!$result)
+    {
+        echo "Error:".$db->error;
+        exit;
+    }
+    elseif (!$result->num_rows)
+    {
+        echo "No Result(add_option)";
+        exit;
+    }
+    
+    $value = "<option value='-1'>请选择</option>";
+    while($row = $result->fetch_object())
+    {
+        if($row->id != $selected_id)
+        {
+            $value .= "<option value='$row->id'>$row->name</option>";
+        }
+        else 
+        {
+            $value .= "<option value='$row->id' selected='selected'>$row->name</option>";
+        }
+    }
+    
+    return $value;
+}
 
 
 

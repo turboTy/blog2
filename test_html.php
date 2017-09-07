@@ -1,0 +1,1 @@
+SmartTemplate Parser Error: File not found: './template_c/test.html'
