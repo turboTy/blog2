@@ -222,7 +222,26 @@ body {
 	font-size: 13px;
 }
 
+.main-left-b {
+	font-size: 14px;
+	color: #fff;
+	background-color: #4caeba;
+}
 
+.main-left-b .userImg {
+	margin: 10px;
+	text-align: center;
+}
+
+.main-left-b .userImg > img {
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+.main-left-b .glyphicon-star {
+	color: #f98080;
+	margin-left: 5px;
+}
 
 
 
