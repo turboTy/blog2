@@ -107,10 +107,12 @@
 			beforeSend: function(){
 				$("#login_title").html('正在登录...');
 			},
-			success:function(data){
+			success: function(data){
+                //alert("b_msg");
 				if(data.v_success == 'false'){
 					alert(data.v_msg);
 					$(".check_code").focus();
+                    $("#login_title").html('用户登录');
 					return false;
 				}
 				if(data.u_success == "true"){
@@ -119,6 +121,7 @@
 				}else if(data.u_success == "false"){
 					alert(data.u_msg);
 					$("#user_name").focus();
+                    $("#login_title").html('用户登录');
 					return false;
 				}
 			},

@@ -19,15 +19,18 @@ if(isset($vcode) && $vcode != ""){
         $sql = "select id from blog_users where user_name = '$username' and user_password = '$password'";
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
-        if($row){
+        if($row)
+        {
             echo '{"u_success":"true","u_msg":"登录成功"}';
-        }else{
+        }
+        else
+        {
             echo '{"u_success":"false","u_msg":"用户名或密码错误"}';
         }
         
     }else{
-       // echo '{"v_success":"false","v_msg":"验证码错误"}';
-        echo "{'v_success':'false','v_msg':'验证码错误'.$username}";
+       echo '{"v_success":"false","v_msg":"验证码错误"}';
+       // echo "{'v_success':'false','v_msg':'验证码错误'}";
     }
 }
 
