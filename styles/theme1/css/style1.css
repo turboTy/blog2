@@ -210,7 +210,8 @@ body {
 	font-size: 15px;
 	line-height: 1.8em;
 	color: #1785b9;
-	border-bottom: 2px solid #e3e8ea;
+	border-bottom: 4px solid #4caeba;
+	border-top: 4px solid #4caeba;
 }
 
 .main-left-t > ul {
@@ -235,13 +236,162 @@ body {
 
 .main-left-b .userImg > img {
 	width: 50%;
-	margin-bottom: 10px;
+	margin: 10px;
 }
 
 .main-left-b .glyphicon-star {
 	color: #f98080;
 	margin-left: 5px;
 }
+
+.panel-title > a {
+	color: #095b62;
+	text-decoration: none;
+}
+
+.panel-body {
+	padding-left: 30px;
+	background-color: #2b596c;
+}
+
+.panel-default {
+	background-color: #4bacb8;
+	border: none;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.panel-heading {
+	text-align: center;
+}
+
+.panel-group {
+	padding-bottom: 5px;
+}
+
+.panel-body > a {
+	width: 80%;
+	border-bottom: 1px dashed #ccc;
+	display: block;
+	line-height: 30px;
+	color: #fff;
+}
+
+.panel-body > a:hover {
+	color: #cee;
+	text-decoration: none;
+}
+
+.panel-title > a > span {
+	margin-left: 15px;
+	color: #2b596c;
+}
+
+.main-center {
+	width: 100%;
+	min-height: 600px;
+	/* background-color: #fff;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.2); */
+}
+
+.main-right {
+	width: 100%;
+	min-height: 580px;
+	background-color: #fff;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 0 0 5px 5px;
+}
+
+.main-right-t-title {
+	height: 30px;
+}
+
+.main-right-t-content {
+	height: 268px;
+	padding: 5px 10px;
+	border-bottom: 4px solid #4caeba;
+}
+
+.main-right-t-title > ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main-right-t-title > ul > li {
+	width: 33.3%;
+	height: 32px;
+	color: #4bacb8;
+	line-height: 32px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+	border-bottom: 2px solid #4bacb8;
+}
+
+.main-right-t-title > ul > .active {
+	background-color: #4bacb8;
+	color: #fff;
+}
+
+.main-right-t-content ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main-right-t-content ul > li {
+	display: block;
+    height: 49px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 2px;
+    padding: 3px 0;
+}
+
+.content-date {
+	width: 40px;
+	height: 40px;
+}
+
+.content-date > span {
+	text-align: center;
+	width: 100%;
+	height: 50%;
+	display: block;
+	line-height: 20px;
+}
+
+#content-date-t {
+	font-size: 18px;
+	font-weight: 600;
+	background-color: #f26f65;
+	color: #eee;
+}
+
+#content-date-b {
+	font-size: 12px;
+	background-color: #ccc;
+	color: #2b596c;
+}
+
+.content-item {
+	font-size: 14px;
+	margin-left: 15px;
+	line-height: 40px;
+}
+
+.content-item > a {
+	color: #2b596c;
+}
+
+
+
+
+
+
+
+
+
 
 
 
