@@ -415,6 +415,31 @@ body {
 	display: block;
 }
 
+.blog-tools {
+	line-height: 34px;
+}
+
+.blog-tools > ul {
+	list-style: none;
+	margin: 0;
+}
+
+.blog-tools > ul > li {
+	width: 80px;
+	font-size: 14px;
+	color: #555;
+	cursor: pointer;
+}
+
+.blog-tools > ul > li > span {
+	margin-right: 8px;
+	font-size: 14px;
+}
+
+#blog-type {
+	margin: 0 20px 0 1px;
+	color: #0d9e79;
+}
 
 
 
