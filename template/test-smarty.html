@@ -9,9 +9,12 @@
 
 
 		{foreach from=$arr key=k item=value}
-			<tr>
+			<tr style="background-color: pink;">
 				{foreach from=$value key=tk item=tv}
-					<td>{$tk}</td><td>{$tv}</td>
+					<td>{$tk}</td>
+				{/foreach} 
+				{foreach from=$value key=tk item=tv}
+					<td>{$tv}</td>
 				{/foreach} 
 			</tr>
 		{/foreach} 
@@ -19,7 +22,7 @@
 
 		
 		{section name=i loop=$arr}
-			<tr>
+			<tr style="background-color: #ddd;">
 				{section name=j loop=$arr[i]}
 					<td>{$arr[i]['id']}</td><td>{$arr[i]['title']}</td>
 				{/section}

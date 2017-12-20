@@ -5,12 +5,35 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	
 	<div style="width: 240px; height: 160px;">
 		<ul>
-			<!-- BEGIN arr -->
-			<li>{a}</li>
-			<!-- END arr -->
+			<{foreach from=$arr key=k item=v}>
+				<{foreach from=$v key=kk item=vv}>
+				<li><{$kk}>----<{$vv}></li>
+				<{/foreach}>
+			<{/foreach}>
+		</ul>
+	</div> 
+	
+	<div style="width: 240px; height: 160px;">
+		<ul>
+			<{foreach from=$arr key=k item=v}>
+				<li><{$v@index}>----<{$v['a']}></li>
+			<{/foreach}>
 		</ul>
 	</div>
+	
+	<div style="width: 240px; height: 160px;">
+		<ul>
+			<{foreach $arr as $k=>$v}>
+				<{foreach $v as $kk=>$vv}>
+					<li><{$kk}>----<{$vv}></li>
+				<{/foreach}>
+			<{/foreach}>
+		</ul>
+	</div>
+	 
 </body>
 </html>
