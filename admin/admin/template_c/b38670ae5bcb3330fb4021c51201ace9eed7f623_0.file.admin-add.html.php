@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-20 22:13:17
+/* Smarty version 3.1.30, created on 2017-12-21 20:41:36
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3a6ffd67a961_66042331',
+  'unifunc' => 'content_5a3bac00515b97_64372059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1513779152,
+      1 => 1513860062,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3a6ffd67a961_66042331 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3bac00515b97_64372059 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -110,17 +110,16 @@ static/h-ui.admin/css/style.css" />
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
+				<option value="9">超级管理员</option>
+				<option value="5">高级管理</option>
+				<option value="1">一般管理</option>
 			</select>
 			</span> </div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">备注：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+			<textarea name="BZ" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
 			<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
 		</div>
 	</div>
@@ -210,14 +209,12 @@ $(function(){
 				url: "admin-add.php" ,
 				dataType: "json",
 				success: function(data){
-					alert(data.stat);
 					if(data.stat == '1'){
-						alert(data.text);
+						layer.msg(data.text,{icon:1,time:1000});
 					}else{
-						alert("错误!");
+						layer.msg(data.text,{icon:1,time:2000});
+						return false;
 					}
-					return false;
-					layer.msg('添加成功!',{icon:1,time:1000});
 				},
                 error: function(XmlHttpRequest, textStatus, errorThrown){
 					layer.msg('error!',{icon:1,time:1000});

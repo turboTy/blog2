@@ -1,6 +1,8 @@
 <?php
-require_once("../../smarty/libs/Smarty.class.php");
+require_once ("../../smarty/libs/Smarty.class.php");
 require_once ("../../configs/db_conn.php");
+require_once ("../../inc/global_params.php");
+require_once '../../libs/mysql.func.php';
 
 //实例化Smarty模版
 $t = new Smarty();
@@ -12,24 +14,72 @@ $t->setCacheDir("./smarty_cache");
 $t->setLeftDelimiter("{{");
 $t->setRightDelimiter("}}");
 
-
 $t->assign("css_path","../");
 
-
+/*
 $adminName = trim($_POST['adminName']);
 $password = sha1(md5(trim($_POST['password'])));
-$phone = trim($_POST['phone']);
+$phone = trim($_POST['phone']);*/
 
-if(isset($adminName) && $adminName != "")
-{
-    echo '{"stat":"1","text":"成功!!!"}';
-    exit;
-}
-else
-{
-    echo '{"stat":"0","text":"失败!!!"}';
+$insertArr = array(
+    "user_name" => "adminName",
+    "user_role" => "adminRole",
+    "email" => "email",
+    "user_password" => "password",
+    "phone" => "phone",
+    "sex" => "sex",
+    "user_BZ" => "BZ",
+    );
     
+if(isset($adminName) && $adminName != "" && isset($password) && $password != "")
+{
+    $insert_field = "";
+    $insert_value = "";
+    
+    foreach ($insertArr as $k=>$v)
+    {
+        if($v == "adminName")
+        {
+            $insert_field .= $k;
+            $insert_value .= "'".trim($$v)."'";
+        }
+        elseif ($v == "password")
+        {
+            $insert_field .= ",".$k;
+            $insert_value .= ",'".sha1(md5(trim($$v)))."'";
+        }
+        else
+        {
+            $insert_field .= ",".$k;
+            $insert_value .= ",'".trim($$v)."'";
+        }
+    }
+    
+    $sql = "insert into admin_users (".$insert_field.",reg_time) values(".$insert_value.",'".time()."')";
+    
+//     exit($sql);
+    $result = $db->query($sql);
+    
+    if($db->affected_rows > 0)
+    {
+        echo '{"stat":"1","text":"保存成功"}';
+        exit;
+    }
+    else
+    {
+        if($db->errno == "1062")
+        {
+            echo '{"stat":"0","text":"用户名已存在"}';
+            exit;
+        }
+        else
+        {
+            echo '{"stat":"0","text":"保存失败"}';
+            exit;
+        }
+    }
 }
+
 
 
 
