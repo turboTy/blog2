@@ -54,6 +54,36 @@ switch ($actionCode)
             exit;
         }
         break;
+    case "deleteUser":
+        $sql = "delete from admin_users where id = '$id' limit 1";
+        $result = $db->query($sql);
+        
+        if($db->affected_rows <= 0)
+        {
+            echo '{"stat":"0","text":"删除失败,请确认是否拥有此权限"}';
+            exit;
+        }
+        else
+        {
+            echo '{"stat":"1","text":"删除成功"}';
+            exit;
+        }
+        break;
+    case "deleteUsers":
+        $sql = "delete from admin_users where id in ('$ids')";
+        $result = $db->query($sql);
+        
+        if($db->affected_rows <= 0)
+        {
+            echo '{"stat":"0","text":"批量删除失败,请确认是否拥有此权限"}';
+            exit;
+        }
+        else
+        {
+            echo '{"stat":"1","text":"批量删除成功"}';
+            exit;
+        }
+        break;
     default:
     case "list":
         $sql = "select * from admin_users";

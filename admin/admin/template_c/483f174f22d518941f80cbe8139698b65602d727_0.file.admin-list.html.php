@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-20 21:09:38
+/* Smarty version 3.1.30, created on 2017-12-22 01:20:59
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3a6112e99100_29235756',
+  'unifunc' => 'content_5a3bed7b0da9f1_78698491',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '483f174f22d518941f80cbe8139698b65602d727' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-list.html',
-      1 => 1513775371,
+      1 => 1513876848,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3a6112e99100_29235756 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3bed7b0da9f1_78698491 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -96,7 +96,8 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars['v']->value) {
 ?>
 			<tr class="text-c">
-				<td><input type="checkbox" value="1" name=""></td>
+				<td><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" name="adminUserId"></td>
 				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_name'];?>
@@ -109,8 +110,27 @@ foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars[
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['reg_time'];?>
 </td>
+				
+				<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
 				<td class="td-status"><span class="label label-success radius">已启用</span></td>
-				<td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				<?php } else { ?>
+				<td class="td-status"><span class="label radius">已停用</span></td>
+				<?php }?>
+				
+				<td class="td-manage">
+				
+					<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
+					<a id="" style="text-decoration:none" onClick="admin_stop(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+					<?php } else { ?>
+					<a id="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" style="text-decoration:none" onClick="admin_start(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+					<?php }?>
+					
+					<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+				</td>
 			</tr>
 		<?php
 }
@@ -165,14 +185,45 @@ lib/laypage/1.2/laypage.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript">
-/*
-	参数解释：
-	title	标题
-	url		请求的url
-	id		需要操作的数据id
-	w		弹出层宽度（缺省调默认值）
-	h		弹出层高度（缺省调默认值）
-*/
+
+function datadel(){
+	var object = $("input[name='adminUserId']");
+	var ids = " ";
+	for (var i = 0; i < object.length; i++){
+		if(object[i].checked){
+			//alert($("input[name='adminUserId']:eq("+i+")").val());
+			ids = ids + $("input[name='adminUserId']:eq("+i+")").val()+",";
+		}
+	}
+	var str = ids.substr(0,ids.length-1);
+	$.ajax({
+		type: "post",
+		dataType: "json",
+		url: "admin-list.php",
+		data: {
+			"ids": str,
+			"actionCode": "deleteUsers",
+		},
+		success: function(data){
+			if(data.stat){
+				layer.msg(data.text,{icon:1,time: 2000});
+				location.reload();
+				for (var i = 0; i < object.length; i++){
+					if(object[i].checked){
+						$("input[name='adminUserId']:eq("+i+")").checked = false;
+					}
+				}
+			}else{
+				layer.msg(data.text,{icon:1,time: 2000});
+				return false;
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown){
+			layer.msg('error!',{icon:1,time:1000});
+		},
+	})
+} 
+
 /*管理员-增加*/
 function admin_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -182,13 +233,22 @@ function admin_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: '',
+			url: 'admin-list.php',
 			dataType: 'json',
+			data: {
+				"actionCode": "deleteUser",
+				"id": id,
+			},
 			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{
-					icon:1,time:1000
-					});
+				if(data.stat){
+					$(obj).parents("tr").remove();
+					layer.msg(data.text,{
+						icon:1,time:1000
+						});
+				}else{
+					layer.msg(data.text,{icon:1,time:2000});
+					return false;
+				}
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -201,17 +261,37 @@ function admin_del(obj,id){
 function admin_edit(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
-/*管理员-停用*/
+//*管理员-停用*/
 function admin_stop(obj,id){
 	layer.confirm('确认要停用吗？',function(index){
 		//此处请求后台程序，下方是成功后的前台处理……
-		
-		$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-		$(obj).remove();
-		layer.msg('已停用!',{
-			icon: 5,time:1000
-			});
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "admin-list.php",
+			data : {
+				"actionCode":"stopUser",
+				"is_banned":"1",
+				"id": id,
+			},
+			success: function(data){
+				if(!data.stat){
+					layer.msg(data.text,{icon:0,time:2000});
+					return false;
+				}else{
+					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
+					$(obj).remove();
+					layer.msg('已停用!',{
+						icon: 5,time:1000
+						});
+					location.reload();
+				}
+			},
+			error: function(XmlHttpRequest, textStatus, errorThrown){
+				layer.msg('error!',{icon:1,time:1000});
+			},
+		})
 	});
 }
 
@@ -219,16 +299,39 @@ function admin_stop(obj,id){
 function admin_start(obj,id){
 	layer.confirm('确认要启用吗？',function(index){
 		//此处请求后台程序，下方是成功后的前台处理……
-		
-		
-		$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-		$(obj).remove();
-		layer.msg('已启用!', {
-			icon: 6,time:1000
-			});
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "admin-list.php",
+			data: {
+				"id": id,
+				"actionCode": "startUser",
+				"is_banned": "0",
+			},
+			success: function(data){
+				if(data.stat){
+					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+					$(obj).remove();
+					layer.msg('已启用!', {
+						icon: 6,time:1000
+						});
+					location.reload();
+				}else{
+					layer.msg(data.text,{icon:1,time:2000});
+					return false;
+				}
+			},
+			error: function(XmlHttpRequest, textStatus, errorThrown){
+				layer.msg('error!',{icon:1,time:1000});
+			},
+		})	
 	});
 }
+
+
+ 
+
 <?php echo '</script'; ?>
 >
 </body>
