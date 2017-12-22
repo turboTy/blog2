@@ -95,6 +95,9 @@ switch ($actionCode)
             exit;
         }
         
+        $num = $result->num_rows;
+        $t->assign("totalNum", $num);
+        
         while ($row = $result->fetch_assoc())
         {
             switch ($row['user_role'])

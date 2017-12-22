@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once ("../configs/db_conn.php");
-requrie_once ("../inc/global_params.php");
+require_once ("../inc/global_params.php");
 
 function admin_login()
 {
@@ -38,15 +38,16 @@ function admin_login()
     }
     
     unset($_SESSION['admin_username']);
-    unset($_SESSION['admin_role']);
+    unset($_SESSION['user_role']);
     
-    sql_select_getonevalue("admin_users", "admin_role", "admin_username = '$username'", $admin_role);
+    sql_select_getonevalue("admin_users", "user_role", "admin_username = '$username'", $user_role);
     
     $_SESSION['admin_username'] = $username;
-    $_SESSION['admin_role'] = $admin_role;
+    $_SESSION['user_role'] = $user_role;
     
     /*更新最后一次登录时间*/
-    sql_select_getonevalue("admin_logs", "login_times", " admin_username = '$username'", $login_times);  
+    sql_select_getonevalue("admin_logs", "login_times", " admin_username = '$username'", $login_times); 
+    sql_select_getonevalue("admin_logs", "admin_id", " admin_username = '$username'", $admin_id); 
     
     if (!empty($login_times))
     {
@@ -56,7 +57,7 @@ function admin_login()
     }
     else
     {
-        $sqlL = "insert into admin_logs(admin_username, last_logintime, login_ip, login_times) values('$username', '$loginTime', '$login_ip', '1')";
+        $sqlL = "insert into admin_logs(admin_username, last_logintime, login_ip, login_times, admin_id) values('$username', '$loginTime', '$login_ip', '1', '$admin_id')";
         $result = $db->query($sqlL);
     }
     

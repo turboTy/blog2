@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-22 01:20:59
+/* Smarty version 3.1.30, created on 2017-12-22 23:18:43
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3bed7b0da9f1_78698491',
+  'unifunc' => 'content_5a3d2253ce23b9_64821177',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '483f174f22d518941f80cbe8139698b65602d727' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-list.html',
-      1 => 1513876848,
+      1 => 1513955921,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3bed7b0da9f1_78698491 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3d2253ce23b9_64821177 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -71,7 +71,8 @@ static/h-ui.admin/css/style.css" />
 		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong><?php echo $_smarty_tpl->tpl_vars['totalNum']->value;?>
+</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
@@ -186,6 +187,7 @@ lib/laypage/1.2/laypage.js"><?php echo '</script'; ?>
 <?php echo '<script'; ?>
  type="text/javascript">
 
+/*批量删除*/
 function datadel(){
 	var object = $("input[name='adminUserId']");
 	var ids = " ";
@@ -208,11 +210,6 @@ function datadel(){
 			if(data.stat){
 				layer.msg(data.text,{icon:1,time: 2000});
 				location.reload();
-				for (var i = 0; i < object.length; i++){
-					if(object[i].checked){
-						$("input[name='adminUserId']:eq("+i+")").checked = false;
-					}
-				}
 			}else{
 				layer.msg(data.text,{icon:1,time: 2000});
 				return false;
