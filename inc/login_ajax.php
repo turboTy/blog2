@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ("../configs/db_conn.php");
 requrie_once ("../inc/global_params.php");
 
@@ -12,7 +13,7 @@ function admin_login()
     $checkCode = trim($checkCode);
     
     $loginTime = time();
-    $loginIp = $_SERVER['REMOTE_ADDR'];
+    $login_ip = $_SERVER['REMOTE_ADDR'];
     
     /*验证码验证*/
     if($checkCode == $_SESSION['checkCode'])
@@ -36,20 +37,30 @@ function admin_login()
         exit;
     }
     
-    /*更新最后一次登录时间*/
-    sql_select_getonevalue("admin_users", "last_logintime", " admin_username = '$username'", $last_logintime);  
-    sql_select_getonevalue("admin_users", "login_ip", " admin_username = '$username'", $login_ip);
+    unset($_SESSION['admin_username']);
+    unset($_SESSION['admin_role']);
     
-    if (!empty($last_logintime) && !empty($login_ip))
+    sql_select_getonevalue("admin_users", "admin_role", "admin_username = '$username'", $admin_role);
+    
+    $_SESSION['admin_username'] = $username;
+    $_SESSION['admin_role'] = $admin_role;
+    
+    /*更新最后一次登录时间*/
+    sql_select_getonevalue("admin_logs", "login_times", " admin_username = '$username'", $login_times);  
+    
+    if (!empty($login_times))
     {
-        $sqlL = "update admin_users set last_logintime = '$loginTime', login_ip = '$login_ip' where admin_username = '$username' limit 1";
+        $login_times += 1;
+        $sqlL = "update admin_logs set last_logintime = '$loginTime', login_ip = '$login_ip', login_times = '$login_times' where admin_username = '$username' limit 1";
         $resultL = $db->query($sqlL);
-        
-        if($db->affected_rows <= 0)
-        {
-            echo '{"update":"0","text":}'
-        }
     }
+    else
+    {
+        $sqlL = "insert into admin_logs(admin_username, last_logintime, login_ip, login_times) values('$username', '$loginTime', '$login_ip', '1')";
+        $result = $db->query($sqlL);
+    }
+    
+    
 }
 
 
