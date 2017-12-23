@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-22 23:18:43
+/* Smarty version 3.1.30, created on 2017-12-23 23:04:40
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3d2253ce23b9_64821177',
+  'unifunc' => 'content_5a3e7088082ba8_73725582',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '483f174f22d518941f80cbe8139698b65602d727' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-list.html',
-      1 => 1513955921,
+      1 => 1514041475,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3d2253ce23b9_64821177 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3e7088082ba8_73725582 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -129,7 +129,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars[
 ')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
 					<?php }?>
 					
-					<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+					<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id=<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+','<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
 					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
 			</tr>
@@ -257,6 +259,7 @@ function admin_del(obj,id){
 /*管理员-编辑*/
 function admin_edit(title,url,id,w,h){
 	layer_show(title,url,w,h);
+	
 }
 //*管理员-停用*/
 function admin_stop(obj,id){

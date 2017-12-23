@@ -31,69 +31,89 @@ $insertArr = array(
     "user_BZ" => "BZ",
     );
     
-if(isset($adminName) && $adminName != "" && isset($password) && $password != "")
-{
-    $insert_field = "";
-    $insert_value = "";
-    
-    foreach ($insertArr as $k=>$v)
-    {
-        if($v == "adminName")
+
+switch ($actionCode)
+{ 
+    case "add":
+        $insert_field = "";
+        $insert_value = "";
+        
+        foreach ($insertArr as $k=>$v)
         {
-            $insert_field .= $k;
-            $insert_value .= "'".trim($$v)."'";
+            if($v == "adminName")
+            {
+                $insert_field .= $k;
+                $insert_value .= "'".trim($$v)."'";
+            }
+            elseif ($v == "password")
+            {
+                $insert_field .= ",".$k;
+                $insert_value .= ",'".sha1(md5(trim($$v)))."'";
+            }
+            else
+            {
+                $insert_field .= ",".$k;
+                $insert_value .= ",'".trim($$v)."'";
+            }
         }
-        elseif ($v == "password")
-        {
-            $insert_field .= ",".$k;
-            $insert_value .= ",'".sha1(md5(trim($$v)))."'";
-        }
-        else
-        {
-            $insert_field .= ",".$k;
-            $insert_value .= ",'".trim($$v)."'";
-        }
-    }
     
-    $sql = "insert into admin_users (".$insert_field.",reg_time) values(".$insert_value.",'".time()."')";
-    
-//     exit($sql);
-    $result = $db->query($sql);
-    
-    if($db->affected_rows > 0)
-    {
-        echo '{"stat":"1","text":"保存成功"}';
-        exit;
-    }
-    else
-    {
-        if($db->errno == "1062")
+        
+        $sql = "insert into admin_users (".$insert_field.",reg_time) values(".$insert_value.",'".time()."')";
+        
+    //     exit($sql);
+        $result = $db->query($sql);
+        
+        if($db->affected_rows > 0)
         {
-            echo '{"stat":"0","text":"用户名已存在"}';
+            echo '{"stat":"1","text":"保存成功"}';
             exit;
         }
         else
         {
-            echo '{"stat":"0","text":"保存失败"}';
-            exit;
+            if($db->errno == "1062")
+            {
+                echo '{"stat":"0","text":"用户名已存在"}';
+                exit;
+            }
+            else
+            {
+                echo '{"stat":"0","text":"保存失败"}';
+                exit;
+            }
         }
-    }
+    break;
+    case "editUser":
+        $sql = "select * from admin_users where id = '$id' limit 0,1";
+        $result = $db->query($sql); 
+        $row = $result->fetch_assoc();
+        
+        foreach ($insertArr as $k=>$v)
+        {
+            $t->assign($v,$row["$k"]);
+        }
+       // $t->display("admin-edit.html");
+        break;
+    default:
+        case "add":
+        break;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*TODO 
+ * 修改用户信息页面隐藏密码输入框
+ * 右上角菜单添加修改密码功能
+ * 
+ *   */
 
 $t->display("admin-add.html");
+
+
+
+
+
+
+
+
+
+
 
 
 

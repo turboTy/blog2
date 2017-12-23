@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-21 20:41:36
+/* Smarty version 3.1.30, created on 2017-12-23 23:11:51
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3bac00515b97_64372059',
+  'unifunc' => 'content_5a3e723748a5c4_28471549',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1513860062,
+      1 => 1514041907,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3bac00515b97_64372059 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3e723748a5c4_28471549 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -66,19 +66,26 @@ static/h-ui.admin/css/style.css" />
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+			<input type="text" class="input-text" value="<?php echo $_smarty_tpl->tpl_vars['adminName']->value;?>
+" placeholder="" id="adminName" name="adminName">
+			<input type="hidden" name="adminRole" value="<?php echo $_smarty_tpl->tpl_vars['adminRole']->value;?>
+">
+			<input type="hidden" name="adminSex" value="<?php echo $_smarty_tpl->tpl_vars['sex']->value;?>
+">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
+			<input type="password" class="input-text" autocomplete="off" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
+" placeholder="密码" id="password" name="password">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="password2">
+			<input type="password" class="input-text" autocomplete="off" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
+" placeholder="确认新密码" id="password2" name="password2">
 		</div>
 	</div>
 	<div class="row cl">
@@ -97,13 +104,15 @@ static/h-ui.admin/css/style.css" />
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+			<input type="text" class="input-text" value="<?php echo $_smarty_tpl->tpl_vars['phone']->value;?>
+" placeholder="" id="phone" name="phone">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" placeholder="@" name="email" id="email">
+			<input type="text" class="input-text" placeholder="@" value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+" name="email" id="email">
 		</div>
 	</div>
 	<div class="row cl">
@@ -119,7 +128,8 @@ static/h-ui.admin/css/style.css" />
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">备注：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<textarea name="BZ" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+			<textarea name="BZ" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"><?php echo $_smarty_tpl->tpl_vars['BZ']->value;?>
+</textarea>
 			<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
 		</div>
 	</div>
@@ -210,9 +220,9 @@ $(function(){
 				dataType: "json",
 				success: function(data){
 					if(data.stat == '1'){
-						layer.msg(data.text,{icon:1,time:1000});
-					}else{
 						layer.msg(data.text,{icon:1,time:2000});
+					}else{
+						layer.msg(data.text,{icon:0,time:2000});
 						return false;
 					}
 				},
