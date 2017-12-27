@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-23 23:04:40
+/* Smarty version 3.1.30, created on 2017-12-27 22:58:22
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3e7088082ba8_73725582',
+  'unifunc' => 'content_5a43b50ea1a060_98624517',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '483f174f22d518941f80cbe8139698b65602d727' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-list.html',
-      1 => 1514041475,
+      1 => 1514386699,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3e7088082ba8_73725582 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a43b50ea1a060_98624517 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -64,12 +64,23 @@ static/h-ui.admin/css/style.css" />
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c"> 日期范围：
-		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
+	<div class="text-c"> 
+	<form name="form_admin" id="form_admin" method="post" action="">
+		加入时间范围：<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" onblur="getMinDate(this.value);" id="datemin" class="input-text Wdate" style="width:120px;" value="<?php echo $_smarty_tpl->tpl_vars['mindate']->value;?>
+">
 		-
-		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" onblur="getMaxDate(this.value);" id="datemax" class="input-text Wdate" style="width:120px;"  value="<?php echo $_smarty_tpl->tpl_vars['maxdate']->value;?>
+">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="adminNameFind" name="adminNameFind" value="<?php echo $_smarty_tpl->tpl_vars['adminNameFind']->value;?>
+">
+		<input type="hidden" name="mindate" value="<?php echo $_smarty_tpl->tpl_vars['mindate']->value;?>
+">
+		<input type="hidden" name="maxdate" value="<?php echo $_smarty_tpl->tpl_vars['maxdate']->value;?>
+">
+		<!-- <input type="hidden" name="actionCode" value="<?php echo $_smarty_tpl->tpl_vars['actionCode']->value;?>
+"> -->
+		<button type="button" class="btn btn-success" id="adminSearchBtn" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong><?php echo $_smarty_tpl->tpl_vars['totalNum']->value;?>
 </strong> 条</span> </div>
@@ -91,56 +102,109 @@ static/h-ui.admin/css/style.css" />
 			</tr>
 		</thead>
 		<tbody>
-		<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['adminArr']->value, 'v', false, 'k');
+		<?php if (isset($_smarty_tpl->tpl_vars['ASList']->value)) {?>
+			<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['ASList']->value, 'v', false, 'k');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars['v']->value) {
 ?>
-			<tr class="text-c">
-				<td><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+				<tr class="text-c">
+					<td><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 " name="adminUserId"></td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 </td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_name'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_name'];?>
 </td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['phone'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['phone'];?>
 </td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['email'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['email'];?>
 </td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_role'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_role'];?>
 </td>
-				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['reg_time'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['reg_time'];?>
 </td>
-				
-				<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
-				<td class="td-status"><span class="label label-success radius">已启用</span></td>
-				<?php } else { ?>
-				<td class="td-status"><span class="label radius">已停用</span></td>
-				<?php }?>
-				
-				<td class="td-manage">
-				
+					
 					<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
-					<a id="" style="text-decoration:none" onClick="admin_stop(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
-')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+					<td class="td-status"><span class="label label-success radius">已启用</span></td>
 					<?php } else { ?>
-					<a id="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
-" style="text-decoration:none" onClick="admin_start(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
-')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+					<td class="td-status"><span class="label radius">已停用</span></td>
 					<?php }?>
 					
-					<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id=<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+					<td class="td-manage">
+					
+						<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
+						<a id="" style="text-decoration:none" onClick="admin_stop(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+						<?php } else { ?>
+						<a id="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" style="text-decoration:none" onClick="admin_start(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+						<?php }?>
+						
+						<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id=<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 ','<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 ','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
-					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-				</td>
-			</tr>
-		<?php
+						<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
+		<?php } else { ?>
+			<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['adminArr']->value, 'v', false, 'k');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars['v']->value) {
+?>
+				<tr class="text-c">
+					<td><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" name="adminUserId"></td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_name'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['phone'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['email'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['user_role'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['v']->value['reg_time'];?>
+</td>
+					
+					<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
+					<td class="td-status"><span class="label label-success radius">已启用</span></td>
+					<?php } else { ?>
+					<td class="td-status"><span class="label radius">已停用</span></td>
+					<?php }?>
+					
+					<td class="td-manage">
+					
+						<?php if ($_smarty_tpl->tpl_vars['v']->value['is_banned'] == "0") {?>
+						<a id="" style="text-decoration:none" onClick="admin_stop(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+						<?php } else { ?>
+						<a id="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" style="text-decoration:none" onClick="admin_start(this,'<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+						<?php }?>
+						
+						<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id=<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+','<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+						<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+		<?php }?>
 			<!-- <tr class="text-c">
 				<td><input type="checkbox" value="2" name=""></td>
 				<td>2</td>
@@ -155,6 +219,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 		</tbody>
 	</table>
 </div>
+
 <!--_footer 作为公共模版分离出去-->
 <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
@@ -188,6 +253,14 @@ lib/laypage/1.2/laypage.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript">
+function getMinDate(date){
+	$("input[name='mindate']").val(date);
+}
+
+function getMaxDate(date){
+	$("input[name='maxdate']").val(date);
+}
+
 
 /*批量删除*/
 function datadel(){
@@ -329,6 +402,35 @@ function admin_start(obj,id){
 	});
 }
 
+
+
+$("#adminSearchBtn").click(function(){
+	var datemin = $("input[name='mindate']").val();
+	var datemax = $("input[name='maxdate']").val();
+	var namefind = $("#adminNameFind").val(); 
+	/*$.ajax({
+		type: "post",
+		dataType: "json",
+		url: "admin-list.php",
+		data: {
+			"datemin": datemin,
+			"datemax": datemax,
+			"namefind": namefind,
+			"actionCode": "search",
+		},
+		success: function(data){
+			if(data.ASStat == "0"){
+				layer.msg(data.ASText,{icon:1,time:2000});
+				return false;
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown){
+			layer.msg('error!',{icon:1,time:1000});
+		},
+	}); */
+	//$("#form_admin").submit();
+	window.location.href = "admin-list.php?actionCode=search&mindate="+datemin+"&maxdate="+datemax+"&adminNameFind="+namefind;
+})
 
  
 

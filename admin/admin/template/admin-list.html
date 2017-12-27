@@ -26,12 +26,17 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c"> 日期范围：
-		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
+	<div class="text-c"> 
+	<form name="form_admin" id="form_admin" method="post" action="">
+		加入时间范围：<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" onblur="getMinDate(this.value);" id="datemin" class="input-text Wdate" style="width:120px;" value="{{$mindate}}">
 		-
-		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" onblur="getMaxDate(this.value);" id="datemax" class="input-text Wdate" style="width:120px;"  value="{{$maxdate}}">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="adminNameFind" name="adminNameFind" value="{{$adminNameFind}}">
+		<input type="hidden" name="mindate" value="{{$mindate}}">
+		<input type="hidden" name="maxdate" value="{{$maxdate}}">
+		<!-- <input type="hidden" name="actionCode" value="{{$actionCode}}"> -->
+		<button type="button" class="btn btn-success" id="adminSearchBtn" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong>{{$totalNum}}</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
@@ -52,35 +57,67 @@
 			</tr>
 		</thead>
 		<tbody>
-		{{foreach $adminArr as $k=>$v}}
-			<tr class="text-c">
-				<td><input type="checkbox" value="{{$v['id']}}" name="adminUserId"></td>
-				<td>{{$v['id']}}</td>
-				<td>{{$v['user_name']}}</td>
-				<td>{{$v['phone']}}</td>
-				<td>{{$v['email']}}</td>
-				<td>{{$v['user_role']}}</td>
-				<td>{{$v['reg_time']}}</td>
-				
-				{{if $v['is_banned'] eq "0"}}
-				<td class="td-status"><span class="label label-success radius">已启用</span></td>
-				{{else}}
-				<td class="td-status"><span class="label radius">已停用</span></td>
-				{{/if}}
-				
-				<td class="td-manage">
-				
+		{{if isset($ASList)}}
+			{{foreach $ASList as $k=>$v}}
+				<tr class="text-c">
+					<td><input type="checkbox" value="{{$v['id']}}" name="adminUserId"></td>
+					<td>{{$v['id']}}</td>
+					<td>{{$v['user_name']}}</td>
+					<td>{{$v['phone']}}</td>
+					<td>{{$v['email']}}</td>
+					<td>{{$v['user_role']}}</td>
+					<td>{{$v['reg_time']}}</td>
+					
 					{{if $v['is_banned'] eq "0"}}
-					<a id="" style="text-decoration:none" onClick="admin_stop(this,'{{$v['id']}}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+					<td class="td-status"><span class="label label-success radius">已启用</span></td>
 					{{else}}
-					<a id="{{$v['id']}}" style="text-decoration:none" onClick="admin_start(this,'{{$v['id']}}')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+					<td class="td-status"><span class="label radius">已停用</span></td>
 					{{/if}}
 					
-					<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id={{$v['id']}}','{{$v['id']}}','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
-					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-				</td>
-			</tr>
-		{{/foreach}}
+					<td class="td-manage">
+					
+						{{if $v['is_banned'] eq "0"}}
+						<a id="" style="text-decoration:none" onClick="admin_stop(this,'{{$v['id']}}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+						{{else}}
+						<a id="{{$v['id']}}" style="text-decoration:none" onClick="admin_start(this,'{{$v['id']}}')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+						{{/if}}
+						
+						<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id={{$v['id']}}','{{$v['id']}}','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+						<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			{{/foreach}}
+		{{else}}
+			{{foreach $adminArr as $k=>$v}}
+				<tr class="text-c">
+					<td><input type="checkbox" value="{{$v['id']}}" name="adminUserId"></td>
+					<td>{{$v['id']}}</td>
+					<td>{{$v['user_name']}}</td>
+					<td>{{$v['phone']}}</td>
+					<td>{{$v['email']}}</td>
+					<td>{{$v['user_role']}}</td>
+					<td>{{$v['reg_time']}}</td>
+					
+					{{if $v['is_banned'] eq "0"}}
+					<td class="td-status"><span class="label label-success radius">已启用</span></td>
+					{{else}}
+					<td class="td-status"><span class="label radius">已停用</span></td>
+					{{/if}}
+					
+					<td class="td-manage">
+					
+						{{if $v['is_banned'] eq "0"}}
+						<a id="" style="text-decoration:none" onClick="admin_stop(this,'{{$v['id']}}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+						{{else}}
+						<a id="{{$v['id']}}" style="text-decoration:none" onClick="admin_start(this,'{{$v['id']}}')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> 
+						{{/if}}
+						
+						<a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.php?actionCode=editUser&id={{$v['id']}}','{{$v['id']}}','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+						<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			{{/foreach}}
+		{{/if}}
 			<!-- <tr class="text-c">
 				<td><input type="checkbox" value="2" name=""></td>
 				<td>2</td>
@@ -95,6 +132,7 @@
 		</tbody>
 	</table>
 </div>
+
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="{{$css_path}}lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="{{$css_path}}lib/layer/2.4/layer.js"></script>
@@ -106,6 +144,14 @@
 <script type="text/javascript" src="{{$css_path}}lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="{{$css_path}}lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
+function getMinDate(date){
+	$("input[name='mindate']").val(date);
+}
+
+function getMaxDate(date){
+	$("input[name='maxdate']").val(date);
+}
+
 
 /*批量删除*/
 function datadel(){
@@ -247,6 +293,35 @@ function admin_start(obj,id){
 	});
 }
 
+
+
+$("#adminSearchBtn").click(function(){
+	var datemin = $("input[name='mindate']").val();
+	var datemax = $("input[name='maxdate']").val();
+	var namefind = $("#adminNameFind").val(); 
+	/*$.ajax({
+		type: "post",
+		dataType: "json",
+		url: "admin-list.php",
+		data: {
+			"datemin": datemin,
+			"datemax": datemax,
+			"namefind": namefind,
+			"actionCode": "search",
+		},
+		success: function(data){
+			if(data.ASStat == "0"){
+				layer.msg(data.ASText,{icon:1,time:2000});
+				return false;
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown){
+			layer.msg('error!',{icon:1,time:1000});
+		},
+	}); */
+	//$("#form_admin").submit();
+	window.location.href = "admin-list.php?actionCode=search&mindate="+datemin+"&maxdate="+datemax+"&adminNameFind="+namefind;
+})
 
  
 

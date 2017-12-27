@@ -91,7 +91,38 @@ switch ($actionCode)
         {
             $t->assign($v,$row["$k"]);
         }
+        $t->assign("id","$id");
+        $t->assign("actionCode","update");
        // $t->display("admin-edit.html");
+        break;
+    case "update":
+        $sqlU = "update admin_users set ";
+        
+        foreach ($insertArr as $k=>$v)
+        {
+            if(!empty($$v))
+            {
+                $sqlU .= "$k = '".$$v."',";
+            }
+        }
+        $sqlU = substr($sqlU, 0, -1);
+        $sqlU .= " where id = '$id' limit 1";
+        
+        //echo $sqlU;
+        
+        $resultU = $db->query($sqlU);
+        if($db->affected_rows <= 0)
+        {
+            echo '{"stat":"0","text":"用户信息更新失败"}';
+            exit;
+        }
+        else 
+        {
+            echo '{"stat":"1","text":"用户信息更新成功!"}';
+            exit;
+        }
+        
+        
         break;
     default:
         case "add":

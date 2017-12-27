@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-23 23:11:51
+/* Smarty version 3.1.30, created on 2017-12-27 21:00:09
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a3e723748a5c4_28471549',
+  'unifunc' => 'content_5a43995996f4d8_68203770',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1514041907,
+      1 => 1514379605,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3e723748a5c4_28471549 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a43995996f4d8_68203770 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -68,9 +68,11 @@ static/h-ui.admin/css/style.css" />
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" value="<?php echo $_smarty_tpl->tpl_vars['adminName']->value;?>
 " placeholder="" id="adminName" name="adminName">
-			<input type="hidden" name="adminRole" value="<?php echo $_smarty_tpl->tpl_vars['adminRole']->value;?>
+			<input type="hidden" name="adminRole2" value="<?php echo $_smarty_tpl->tpl_vars['adminRole']->value;?>
 ">
 			<input type="hidden" name="adminSex" value="<?php echo $_smarty_tpl->tpl_vars['sex']->value;?>
+">
+			<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 ">
 		</div>
 	</div>
@@ -118,7 +120,7 @@ static/h-ui.admin/css/style.css" />
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="adminRole" size="1">
+			<select class="select select_role" name="adminRole" size="1">
 				<option value="9">超级管理员</option>
 				<option value="5">高级管理</option>
 				<option value="1">一般管理</option>
@@ -135,6 +137,8 @@ static/h-ui.admin/css/style.css" />
 	</div>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input type="hidden" name="actionCode" value="<?php echo $_smarty_tpl->tpl_vars['actionCode']->value;?>
+">
 			<input class="btn btn-primary radius" id="submitBtn" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 		</div>
 	</div>
@@ -174,6 +178,20 @@ lib/jquery.validation/1.14.0/messages_zh.js"><?php echo '</script'; ?>
 > 
 <?php echo '<script'; ?>
  type="text/javascript">
+$(document).ready(function(){
+	var sexVal = $("input[name='adminSex']").val() - 1;
+	var roleVal = $("input[name='adminRole2']").val();
+	var actionCode = $("input[name='actionCode']").val();
+	
+	if(sexVal != "" && actionCode == "update"){
+		$("input[name='sex']:eq("+sexVal+")").attr("checked","checked");
+	}
+	
+	if(roleVal != ""){
+		$(".select_role").val(roleVal);
+	}
+})
+
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -181,6 +199,7 @@ $(function(){
 		increaseArea: '20%'
 	});
 	
+
 	$("#form-admin-add").validate({
 		rules:{
 			adminName:{
@@ -237,6 +256,10 @@ $(function(){
 		}
 	});
 });
+
+/* $(".btn-primary").click(function(){
+	
+}) */
 <?php echo '</script'; ?>
 > 
 <!--/请在上方写此页面业务相关的脚本-->

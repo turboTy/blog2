@@ -129,12 +129,52 @@ switch ($actionCode)
         }
         
         $t->assign("adminArr",$adminArr);
+        $t->assign("actionCode","search");
         
+        break;
+    case "search":
+        $datemin = strtotime($mindate);
+        $datemax = strtotime($maxdate);
+        $namefind = $adminNameFind;
+        $sqlS = "select * from admin_users where 1 ";
+         
+        if(!empty($datemin))
+        {
+            $sqlS .= " and reg_time >= '".$datemin."'";
+        }
+        
+        if(!empty($datemax))
+        {
+            $sqlS .= " and reg_time <= '".$datemax."'";
+        }
+        
+        if(!empty($namefind))
+        {
+            $sqlS .= " and user_name like '%".$namefind."%'";
+        }
+        
+        $resultS = $db->query($sqlS);
+        if($resultS->num_rows <= 0)
+        {
+            //echo '{"ASStat":"0","ASText":"查无匹配用户"}';
+            echo "<script type='text/javascript'>alert('查无匹配用户');return false;</script>";
+        }
+
+        while($rowS = $resultS->fetch_assoc())
+        {
+            $rowS['reg_time'] = date("Y-m-d",$rowS['reg_time']);
+            $ASList[] = $rowS;
+        }
+        //var_dump($ASList);
+        $t->assign("ASList",$ASList);
+        $t->assign("mindate",$mindate);
+        $t->assign("maxdate",$maxdate);
+        $t->assign("adminNameFind",$adminNameFind);
+        $t->assign("actionCode","search");
         break;
 }
 
 //var_dump($adminArr);
-
 
 
 
