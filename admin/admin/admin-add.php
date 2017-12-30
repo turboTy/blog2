@@ -3,6 +3,7 @@ require_once ("../../smarty/libs/Smarty.class.php");
 require_once ("../../configs/db_conn.php");
 require_once ("../../inc/global_params.php");
 require_once '../../libs/mysql.func.php';
+//require_once '../../inc/check_login.php';
 
 //实例化Smarty模版
 $t = new Smarty();
@@ -129,7 +130,7 @@ switch ($actionCode)
         break;
 }
 /*TODO 
- * 修改用户信息页面隐藏密码输入框
+ * 
  * 右上角菜单添加修改密码功能
  * 
  *   */

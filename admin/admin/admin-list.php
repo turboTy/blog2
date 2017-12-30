@@ -6,6 +6,7 @@ require_once("../../smarty/libs/Smarty.class.php");
 require_once ("../../configs/db_conn.php");
 require_once ("../../inc/global_params.php");
 require_once '../../libs/mysql.func.php';
+//require_once '../../inc/check_login.php';
 
 //实例化Smarty模版
 $t = new Smarty();
