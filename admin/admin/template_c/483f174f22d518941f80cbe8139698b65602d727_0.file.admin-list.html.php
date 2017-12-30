@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-27 22:58:22
+/* Smarty version 3.1.30, created on 2017-12-30 09:29:34
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a43b50ea1a060_98624517',
+  'unifunc' => 'content_5a46ebfe7b4276_21715044',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '483f174f22d518941f80cbe8139698b65602d727' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-list.html',
-      1 => 1514386699,
+      1 => 1514597253,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a43b50ea1a060_98624517 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a46ebfe7b4276_21715044 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -62,7 +62,7 @@ static/h-ui.admin/css/style.css" />
 </title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" id="refresh_btn" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c"> 
 	<form name="form_admin" id="form_admin" method="post" action="">
@@ -80,6 +80,7 @@ static/h-ui.admin/css/style.css" />
 		<!-- <input type="hidden" name="actionCode" value="<?php echo $_smarty_tpl->tpl_vars['actionCode']->value;?>
 "> -->
 		<button type="button" class="btn btn-success" id="adminSearchBtn" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<button type="button" class="btn btn-danger" id="adminClearBtn" name="">清空条件</button>
 	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong><?php echo $_smarty_tpl->tpl_vars['totalNum']->value;?>
@@ -403,7 +404,7 @@ function admin_start(obj,id){
 }
 
 
-
+//查询
 $("#adminSearchBtn").click(function(){
 	var datemin = $("input[name='mindate']").val();
 	var datemax = $("input[name='maxdate']").val();
@@ -431,6 +432,21 @@ $("#adminSearchBtn").click(function(){
 	//$("#form_admin").submit();
 	window.location.href = "admin-list.php?actionCode=search&mindate="+datemin+"&maxdate="+datemax+"&adminNameFind="+namefind;
 })
+
+function clearForm(formId){
+	$(':input',formId) 
+	.not(':button, :submit, :reset, :hidden') 
+	.val('') 
+	.removeAttr('checked') 
+	.removeAttr('selected');
+	window.location.href="admin-list.php";
+}
+
+//清空查询条件
+$("#adminClearBtn").click(function(){
+	clearForm("#form_admin");
+})
+
 
  
 

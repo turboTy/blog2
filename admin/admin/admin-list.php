@@ -159,13 +159,14 @@ switch ($actionCode)
             //echo '{"ASStat":"0","ASText":"查无匹配用户"}';
             echo "<script type='text/javascript'>alert('查无匹配用户');return false;</script>";
         }
-
+        $num = $resultS->num_rows;
         while($rowS = $resultS->fetch_assoc())
         {
             $rowS['reg_time'] = date("Y-m-d",$rowS['reg_time']);
             $ASList[] = $rowS;
         }
         //var_dump($ASList);
+        $t->assign("totalNum",$num);
         $t->assign("ASList",$ASList);
         $t->assign("mindate",$mindate);
         $t->assign("maxdate",$maxdate);

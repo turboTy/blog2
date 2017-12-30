@@ -24,7 +24,7 @@
 <title>管理员列表{{$css_path}}</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" id="refresh_btn" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c"> 
 	<form name="form_admin" id="form_admin" method="post" action="">
@@ -36,6 +36,7 @@
 		<input type="hidden" name="maxdate" value="{{$maxdate}}">
 		<!-- <input type="hidden" name="actionCode" value="{{$actionCode}}"> -->
 		<button type="button" class="btn btn-success" id="adminSearchBtn" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<button type="button" class="btn btn-danger" id="adminClearBtn" name="">清空条件</button>
 	</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','admin-add.php','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员3</a></span> <span class="r">共有数据：<strong>{{$totalNum}}</strong> 条</span> </div>
@@ -294,7 +295,7 @@ function admin_start(obj,id){
 }
 
 
-
+//查询
 $("#adminSearchBtn").click(function(){
 	var datemin = $("input[name='mindate']").val();
 	var datemax = $("input[name='maxdate']").val();
@@ -322,6 +323,21 @@ $("#adminSearchBtn").click(function(){
 	//$("#form_admin").submit();
 	window.location.href = "admin-list.php?actionCode=search&mindate="+datemin+"&maxdate="+datemax+"&adminNameFind="+namefind;
 })
+
+function clearForm(formId){
+	$(':input',formId) 
+	.not(':button, :submit, :reset, :hidden') 
+	.val('') 
+	.removeAttr('checked') 
+	.removeAttr('selected');
+	window.location.href="admin-list.php";
+}
+
+//清空查询条件
+$("#adminClearBtn").click(function(){
+	clearForm("#form_admin");
+})
+
 
  
 

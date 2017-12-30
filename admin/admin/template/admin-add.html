@@ -35,13 +35,13 @@
 			<input type="hidden" name="id" value="{{$id}}">
 		</div>
 	</div>
-	<div class="row cl">
+	<div class="row cl edit-password">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="password" class="input-text" autocomplete="off" value="{{$password}}" placeholder="密码" id="password" name="password">
 		</div>
 	</div>
-	<div class="row cl">
+	<div class="row cl edit-password">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="password" class="input-text" autocomplete="off" value="{{$password}}" placeholder="确认新密码" id="password2" name="password2">
@@ -121,6 +121,10 @@ $(document).ready(function(){
 	if(roleVal != ""){
 		$(".select_role").val(roleVal);
 	}
+	
+	if(actionCode == "update"){
+		$(".edit-password").css("display","none");
+	}
 })
 
 $(function(){
@@ -171,6 +175,8 @@ $(function(){
 				success: function(data){
 					if(data.stat == '1'){
 						layer.msg(data.text,{icon:1,time:2000});
+						//parent.$('.btn-refresh').click();
+						
 					}else{
 						layer.msg(data.text,{icon:0,time:2000});
 						return false;
@@ -182,15 +188,13 @@ $(function(){
 			});
 			return false;
 			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
+			//parent.$('.btn-refresh').click();
 			parent.layer.close(index);
 		}
 	});
 });
 
-/* $(".btn-primary").click(function(){
-	
-}) */
+ 
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

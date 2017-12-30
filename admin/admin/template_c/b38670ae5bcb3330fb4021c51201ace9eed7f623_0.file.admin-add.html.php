@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-27 21:00:09
+/* Smarty version 3.1.30, created on 2017-12-30 09:17:57
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a43995996f4d8_68203770',
+  'unifunc' => 'content_5a46e945042511_29777163',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1514379605,
+      1 => 1514596674,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a43995996f4d8_68203770 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a46e945042511_29777163 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -76,14 +76,14 @@ static/h-ui.admin/css/style.css" />
 ">
 		</div>
 	</div>
-	<div class="row cl">
+	<div class="row cl edit-password">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="password" class="input-text" autocomplete="off" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
 " placeholder="密码" id="password" name="password">
 		</div>
 	</div>
-	<div class="row cl">
+	<div class="row cl edit-password">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="password" class="input-text" autocomplete="off" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
@@ -190,6 +190,10 @@ $(document).ready(function(){
 	if(roleVal != ""){
 		$(".select_role").val(roleVal);
 	}
+	
+	if(actionCode == "update"){
+		$(".edit-password").css("display","none");
+	}
 })
 
 $(function(){
@@ -240,6 +244,10 @@ $(function(){
 				success: function(data){
 					if(data.stat == '1'){
 						layer.msg(data.text,{icon:1,time:2000});
+						//parent.$('.btn-refresh').click();
+						var index = parent.layer.getFrameIndex(window.name);
+						parent.layer.close(index);
+						$("#submitBtn").trigger("click");
 					}else{
 						layer.msg(data.text,{icon:0,time:2000});
 						return false;
@@ -251,7 +259,7 @@ $(function(){
 			});
 			return false;
 			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
+			//parent.$('.btn-refresh').click();
 			parent.layer.close(index);
 		}
 	});
