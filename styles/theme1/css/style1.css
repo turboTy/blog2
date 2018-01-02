@@ -20,7 +20,8 @@ body {
 	/*height: 100%;*/
 	min-width: 300px;
 	min-height: 360px;
-	background-color: #f5bcb7;
+	/*background-color: #f5bcb7;*/
+	background-color: rgba(236, 163, 140, 0.7);
 	box-shadow: 5px 5px 12px rgba(0,0,0,0.1);
 	border-radius: 2%;
 	display: flex;
@@ -29,10 +30,15 @@ body {
 	padding: 0;
 }
 
+.login-window .btn {
+	width: 80px;
+}
+
 .login-window table {
+	width: 60%;
 	min-height: 300px;
 	font-size: 15px;
-	margin-right: 20px;
+	margin: 20px 0;
 	/*margin: auto;*/
 }
 
@@ -42,7 +48,7 @@ body {
 }
 
 .login-items {
-	padding-left: 22px;
+	padding-left: 2px;
 }
 
 .login-items input {
@@ -51,7 +57,9 @@ body {
 }
 
 .check_code_img {
-	margin: 4px 0;
+	margin: 2px 0;
+	border-radius: 2px;
+	cursor: pointer;
 }
 
 .login-items label,
@@ -65,11 +73,16 @@ body {
 }
 
 .login-window .check_code {
-	width: 110px!important;
+	width: 120px!important;
+	margin-right: 32px;
 }
 
 .login-window table tr {
 	height: 40px;
+}
+
+.login-window input {
+	height: 30px;
 }
 
 

@@ -6,17 +6,17 @@ require_once ("../inc/global_params.php");
 function admin_login()
 {
     global $db;  
-    global $username,$password,$checkCode;
+    global $username,$password,$check_code;
     
     $username = trim($username);
     $password = sha1(md5(trim($password)));
-    $checkCode = trim($checkCode);
+    $check_code = trim(strtolower($check_code));
     
     $loginTime = time();
     $login_ip = $_SERVER['REMOTE_ADDR'];
     
     /*验证码验证*/
-    if($checkCode == $_SESSION['checkCode'])
+    if($check_code == strtolower($_SESSION['vcode']))
     {
         /*用户名密码验证*/
         $sql = "select * from admin_users where admin_username = '$username' and user_password = '$password' limit 1"; 
@@ -24,11 +24,11 @@ function admin_login()
         if($result->num_rows <= 0)
         {
             echo '{"stat":"0","text":"登录失败,请检查用户名/密码"}'; 
+            exit;
         }
         else
         {
             echo '{"stat":"1","text":"登录成功"}';   
-            exit;
         }
     }
     else
@@ -62,6 +62,11 @@ function admin_login()
     }
     
     
+}
+
+if (!empty($username) && !empty($password) && !empty($check_code))
+{
+    admin_login();
 }
 
 
