@@ -35,7 +35,7 @@
                         <tr>
                             <!-- <td align="right">密　码：</td> -->
                             <td>
-                                <input type="password" name="password"  placeholder="请输入用户密码" class="form-control" title="用户密码">
+                                <input type="password" name="password"  placeholder="请输入用户密码" class="form-control" title="用户密码" autocomplete="off" >
                             </td>
                         </tr>
                         <tr>
@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="login-items">
-                                <label><input type="checkbox" name="auto_pwd">&nbsp;<em>记住账号</em></label>&nbsp;&nbsp;
+                                <label><input type="checkbox" name="auto_user">&nbsp;<em>记住账号</em></label>&nbsp;&nbsp;
                                 <label><input type="checkbox" name="auto_login">&nbsp;<em>自动登录<em></label>
                                 <a href="#" class="fr">忘记密码?</a>
                             </td>
@@ -86,6 +86,19 @@
             }
         };
 
+        var autoUser = "";
+        var autoLogin = "";
+        if($("input[name='auto_user']").is(':checked')){
+            autoUser = '1';
+        }else{
+            autoUser = '0';
+        }
+        if($("input[name='auto_login']").is(':checked')){
+            autoLogin = '1';
+        }else{
+            autoLogin = '0';
+        }
+
         $.ajax({
             type: "post",
             url: "./inc/login_ajax.php",
@@ -94,19 +107,19 @@
                 "username": $("input[name='username']").val(),
                 "password": $("input[name='password']").val(),
                 "check_code": $("input[name='check_code']").val(),
-                "auto_pwd": $("input[name='auto_pwd']").val(),
-                "auto_login": $("input[name='auto_login']").val(),
+                "auto_user": autoUser,
+                "auto_login": autoLogin,
             },
             success: function(data){
                 if (data.stat == "1") {
                     layer.msg(data.text, {icon: 1,time: 2000});
-                    return false;
+                    window.location.href = "./admin/index.html";
                 }else if(data.stat == "-1"){
                     layer.msg(data.text, {icon: 2,time: 2000});
                     return false;
                 }else{
                     layer.msg(data.text, {icon: 0,time: 2000});
-                    window.location.href = "./admin/index.html";
+                    return false;
                 }
             },
             error: function(XmlHttpRequest, textStatus, errorThrown){

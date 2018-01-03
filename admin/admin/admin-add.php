@@ -35,6 +35,7 @@ $insertArr = array(
 
 switch ($actionCode)
 { 
+    default:
     case "add":
         $insert_field = "";
         $insert_value = "";
@@ -124,9 +125,6 @@ switch ($actionCode)
         }
         
         
-        break;
-    default:
-        case "add":
         break;
 }
 /*TODO 

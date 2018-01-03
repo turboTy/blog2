@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-12-30 09:17:57
+/* Smarty version 3.1.30, created on 2018-01-02 22:51:46
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a46e945042511_29777163',
+  'unifunc' => 'content_5a4b9c826f4a42_10783320',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1514596674,
+      1 => 1514902690,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a46e945042511_29777163 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a4b9c826f4a42_10783320 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -245,9 +245,7 @@ $(function(){
 					if(data.stat == '1'){
 						layer.msg(data.text,{icon:1,time:2000});
 						//parent.$('.btn-refresh').click();
-						var index = parent.layer.getFrameIndex(window.name);
-						parent.layer.close(index);
-						$("#submitBtn").trigger("click");
+						
 					}else{
 						layer.msg(data.text,{icon:0,time:2000});
 						return false;
@@ -265,9 +263,7 @@ $(function(){
 	});
 });
 
-/* $(".btn-primary").click(function(){
-	
-}) */
+ 
 <?php echo '</script'; ?>
 > 
 <!--/请在上方写此页面业务相关的脚本-->

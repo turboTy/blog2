@@ -18,11 +18,11 @@ function sql_select_getonevalue($table, $field, $condition, &$value)
        echo "Error:".$db->error; 
        exit;
     }
-    elseif (!$result->num_rows)
+    /* elseif (!$result->num_rows)
     {
         echo "No Result(sql_select_getonevalue)";
         exit;
-    }
+    } */
     $row = $result->fetch_assoc();
     $value = $row['Value2412794000'];
     
@@ -141,7 +141,28 @@ function add_option($id, $name, $table, $condition, $selected_id, &$value)
     return $value;
 }
 
+function getIP() {
+    if (getenv('HTTP_CLIENT_IP')) {
+        $ip = getenv('HTTP_CLIENT_IP');
+    }
+    elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+        $ip = getenv('HTTP_X_FORWARDED_FOR');
+    }
+    elseif (getenv('HTTP_X_FORWARDED')) {
+        $ip = getenv('HTTP_X_FORWARDED');
+    }
+    elseif (getenv('HTTP_FORWARDED_FOR')) {
+        $ip = getenv('HTTP_FORWARDED_FOR');
 
+    }
+    elseif (getenv('HTTP_FORWARDED')) {
+        $ip = getenv('HTTP_FORWARDED');
+    }
+    else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
 
 
 
