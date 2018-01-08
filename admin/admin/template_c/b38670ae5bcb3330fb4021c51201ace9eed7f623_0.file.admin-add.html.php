@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-01-02 22:51:46
+/* Smarty version 3.1.30, created on 2018-01-08 11:22:27
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a4b9c826f4a42_10783320',
+  'unifunc' => 'content_5a52e3f3440701_46448826',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b38670ae5bcb3330fb4021c51201ace9eed7f623' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-add.html',
-      1 => 1514902690,
+      1 => 1515381742,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a4b9c826f4a42_10783320 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a52e3f3440701_46448826 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -121,9 +121,11 @@ static/h-ui.admin/css/style.css" />
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select select_role" name="adminRole" size="1">
-				<option value="9">超级管理员</option>
+				<!-- <option value="9">超级管理员</option>
 				<option value="5">高级管理</option>
-				<option value="1">一般管理</option>
+				<option value="1">一般管理</option> -->
+				<?php echo $_smarty_tpl->tpl_vars['ops_adminType']->value;?>
+
 			</select>
 			</span> </div>
 	</div>

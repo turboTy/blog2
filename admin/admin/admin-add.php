@@ -37,6 +37,11 @@ switch ($actionCode)
 { 
     default:
     case "add":
+        //列出所有管理员类型
+        $ops_adminType = add_option("type_id", "type_name", "admin_type", "1", "1", $value);
+        $t->assign("ops_adminType", $ops_adminType);
+        //var_dump($ops_adminType);
+        
         $insert_field = "";
         $insert_value = "";
         
@@ -59,30 +64,33 @@ switch ($actionCode)
             }
         }
     
-        
-        $sql = "insert into admin_users (".$insert_field.",reg_time) values(".$insert_value.",'".time()."')";
-        
-    //     exit($sql);
-        $result = $db->query($sql);
-        
-        if($db->affected_rows > 0)
+        if(isset($adminName) && isset($password))
         {
-            echo '{"stat":"1","text":"保存成功"}';
-            exit;
-        }
-        else
-        {
-            if($db->errno == "1062")
+            $sql = "insert into admin_users (".$insert_field.",reg_time) values(".$insert_value.",'".time()."')";
+            
+            //     exit($sql);
+            $result = $db->query($sql);
+            
+            if($db->affected_rows > 0)
             {
-                echo '{"stat":"0","text":"用户名已存在"}';
+                echo '{"stat":"1","text":"保存成功"}';
                 exit;
             }
             else
             {
-                echo '{"stat":"0","text":"保存失败"}';
-                exit;
-            }
+                if($db->errno == "1062")
+                {
+                    echo '{"stat":"0","text":"用户名已存在"}';
+                    exit;
+                }
+                else
+                {
+                    echo '{"stat":"0","text":"保存失败"}';
+                    exit;
+                }
+            }  
         }
+        
     break;
     case "editUser":
         $sql = "select * from admin_users where id = '$id' limit 0,1";

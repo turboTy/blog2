@@ -51,11 +51,11 @@ function sql_select_get2value($table, $field1, $field2, $condition, &$value1, &$
         echo "Error:".$db->error;
         exit;
     }
-    elseif (!$result->num_rows)
+    /*elseif (!$result->num_rows)
     {
         echo "No Result(sql_select_get2value)";
         exit;
-    }
+    }*/
     
     $row = $result->fetch_assoc();
     $value1 = $row['Value24127940001'];
@@ -63,6 +63,36 @@ function sql_select_get2value($table, $field1, $field2, $condition, &$value1, &$
     
     return $value1;
     return $value2;  
+}
+
+
+
+/**查询某一列值
+ * @param string $table
+ * @param string $field
+ * @param string $condition
+ * @param array $value
+ * @return multitype:array 
+ */
+function sql_select_getallvalue($table, $field, $condition, &$array)
+{
+    global $db;
+    
+    $sql = "select $field as Value24127940003 from $table where $condition";
+    $result = $db->query($sql);
+    
+    if(!$result)
+    {
+        echo "Error:".$db->error;
+        exit;
+    }
+    
+    $array = array();
+    while ($row = $result->fetch_assoc()) 
+    {
+        $array[] = $row["Value24127940003"];
+    }
+    return $array;
 }
 
 

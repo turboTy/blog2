@@ -1,4 +1,28 @@
-﻿<!DOCTYPE HTML>
+<?php
+/* Smarty version 3.1.30, created on 2018-01-08 12:41:21
+  from "C:\wamp\www\github\blog2\admin\admin\template\admin-role.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_5a52f671034526_05866198',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '82612fa9a39e2f30fe9322ba856280600bfc99b1' => 
+    array (
+      0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-role.html',
+      1 => 1515386477,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5a52f671034526_05866198 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
@@ -7,17 +31,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5shiv.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="lib/html5shiv.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="lib/respond.min.js"><?php echo '</script'; ?>
+>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="{{$css_path}}static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="{{$css_path}}static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="{{$css_path}}lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="{{$css_path}}static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="{{$css_path}}static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
-<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>DD_belatedPNG.fix('*');<?php echo '</script'; ?>
+>
 <![endif]-->
 <title>角色管理</title>
 </head>
@@ -41,16 +78,31 @@
 		</thead>
 		<tbody>
 		
-		{{foreach $adminType_lists as $k => $v}}
+		<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['adminType_lists']->value, 'v', false, 'k');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars['v']->value) {
+?>
 			<tr class="text-c">
-				<td><input type="checkbox" value="{{$v['id']}}" name="adminTypeId"></td>
-				<td>{{$v['id']}}</td>
-				<td>{{$v['type_name']}}</td>
-				<td>{{$v['nameLists']}}</td>
-				<td>{{$v['type_BZ']}}</td>
-				<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.html','{{$}}')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				<td><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+" name="adminTypeId"></td>
+				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['type_name'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['nameLists'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['type_BZ'];?>
+</td>
+				<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.html','<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
-		{{/foreach}}
+		<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
 			
 			<!-- <tr class="text-c">
 				<td><input type="checkbox" value="" name=""></td>
@@ -80,14 +132,30 @@
 	</table>
 </div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="{{$css_path}}lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="{{$css_path}}lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="{{$css_path}}static/h-ui/js/H-ui.min.js"></script> 
-<script type="text/javascript" src="{{$css_path}}static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+lib/jquery/1.9.1/jquery.min.js"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+lib/layer/2.4/layer.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui/js/H-ui.min.js"><?php echo '</script'; ?>
+> 
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+static/h-ui.admin/js/H-ui.admin.js"><?php echo '</script'; ?>
+> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="{{$css_path}}lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['css_path']->value;?>
+lib/datatables/1.10.0/jquery.dataTables.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
 /*管理员-角色-添加*/
 function admin_role_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -113,6 +181,8 @@ function admin_role_del(obj,id){
 		});		
 	});
 }
-</script>
+<?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}
