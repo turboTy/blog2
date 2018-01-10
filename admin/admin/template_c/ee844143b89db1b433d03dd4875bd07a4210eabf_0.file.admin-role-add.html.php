@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-01-09 21:02:34
+/* Smarty version 3.1.30, created on 2018-01-10 22:18:09
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-role-add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a54bd6a94aad0_42078504',
+  'unifunc' => 'content_5a5620a1da4ca2_37448437',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ee844143b89db1b433d03dd4875bd07a4210eabf' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-role-add.html',
-      1 => 1515502948,
+      1 => 1515593884,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a54bd6a94aad0_42078504 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a5620a1da4ca2_37448437 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
@@ -71,13 +71,29 @@ static/h-ui.admin/css/style.css" />
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName">
+				<input type="text" class="input-text" value="<?php echo $_smarty_tpl->tpl_vars['type_name']->value;?>
+" placeholder="" id="roleName" name="roleName">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限ID：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<label class="">
+					<input type="radio" value="1" name="userPermission" id="user-permission-0">
+					1(低级权限)</label>
+				<label class="">
+					<input type="radio" value="5" name="userPermission" id="user-permission-1">
+					5(中级权限)</label>
+				<label class="">
+					<input type="radio" value="9" name="userPermission" id="user-permission-2">
+					9(高级权限)</label>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="<?php echo $_smarty_tpl->tpl_vars['type_BZ']->value;?>
+" placeholder="" id="type_BZ" name="type_BZ">
 			</div>
 		</div>
 		<div class="row cl">
@@ -98,46 +114,46 @@ static/h-ui.admin/css/style.css" />
 							</dt>
 							<dd>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-0">
+									<input type="checkbox" value="1" name="user-Character-0-0-0" id="user-Character-0-0-0">
 									添加</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-1">
+									<input type="checkbox" value="2" name="user-Character-0-0-0" id="user-Character-0-0-1">
 									修改</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-2">
+									<input type="checkbox" value="3" name="user-Character-0-0-0" id="user-Character-0-0-2">
 									删除</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-3">
+									<input type="checkbox" value="4" name="user-Character-0-0-0" id="user-Character-0-0-3">
 									查看</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-4">
+									<input type="checkbox" value="5" name="user-Character-0-0-0" id="user-Character-0-0-4">
 									审核</label>
-								<label class="c-orange"><input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-5"> 只能操作自己发布的</label>
+								<label class="c-orange"><input type="checkbox" value="6" name="user-Character-0-0-0" id="user-Character-0-0-5"> 只能操作自己发布的</label>
 							</dd>
 						</dl>
 						<dl class="cl permission-list2">
 							<dt>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1" id="user-Character-0-1">
+									<input type="checkbox" value="7" name="user-Character-0-1" id="user-Character-0-1">
 									文章管理</label>
 							</dt>
 							<dd>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-0">
+									<input type="checkbox" value="8" name="user-Character-0-1-0" id="user-Character-0-1-0">
 									添加</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-1">
+									<input type="checkbox" value="9" name="user-Character-0-1-0" id="user-Character-0-1-1">
 									修改</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-2">
+									<input type="checkbox" value="10" name="user-Character-0-1-0" id="user-Character-0-1-2">
 									删除</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-3">
+									<input type="checkbox" value="11" name="user-Character-0-1-0" id="user-Character-0-1-3">
 									查看</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-4">
+									<input type="checkbox" value="12" name="user-Character-0-1-0" id="user-Character-0-1-4">
 									审核</label>
-								<label class="c-orange"><input type="checkbox" value="" name="user-Character-0-2-0" id="user-Character-0-2-5"> 只能操作自己发布的</label>
+								<label class="c-orange"><input type="checkbox" value="13" name="user-Character-0-2-0" id="user-Character-0-2-5"> 只能操作自己发布的</label>
 							</dd>
 						</dl>
 					</dd>
@@ -157,19 +173,19 @@ static/h-ui.admin/css/style.css" />
 							</dt>
 							<dd>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-0">
+									<input type="checkbox" value="14" name="user-Character-1-0-0" id="user-Character-1-0-0">
 									添加</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-1">
+									<input type="checkbox" value="15" name="user-Character-1-0-0" id="user-Character-1-0-1">
 									修改</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-2">
+									<input type="checkbox" value="16" name="user-Character-1-0-0" id="user-Character-1-0-2">
 									删除</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-3">
+									<input type="checkbox" value="17" name="user-Character-1-0-0" id="user-Character-1-0-3">
 									查看</label>
 								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-4">
+									<input type="checkbox" value="18" name="user-Character-1-0-0" id="user-Character-1-0-4">
 									审核</label>
 							</dd>
 						</dl>
@@ -244,12 +260,36 @@ $(function(){
 			roleName:{
 				required:true,
 			},
+			userPermission:{
+				required:true,
+			},
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit();
+			var valStr = "";
+			var object = $(".permission-list2 > dd input[type='checkbox']");
+
+			for(var j = 0; j < object.length; j++){
+				if(object[j].checked){
+					valStr += object[j].value + ",";
+				}
+			}
+			valStr = valStr.substr(0, valStr.length - 1);
+
+			$(form).ajaxSubmit({
+				type: "post",
+				dataType: "json",
+				url: "admin-role-add.php",
+				data: {
+					"type_pID": valStr,
+					"actionCode": "add",
+					"type_name": $("input[name='roleName']").val(),
+					"type_BZ": $("input[type='type_BZ']").val(),
+					"type_id": $("input[name='type_id']").val(),
+				},
+			});
 			var index = parent.layer.getFrameIndex(window.name);
 			parent.layer.close(index);
 		}
