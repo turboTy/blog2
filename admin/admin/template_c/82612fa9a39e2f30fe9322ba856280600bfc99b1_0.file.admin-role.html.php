@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-01-09 23:11:01
+/* Smarty version 3.1.30, created on 2018-01-16 22:25:33
   from "C:\wamp\www\github\blog2\admin\admin\template\admin-role.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a54db85c3d798_85917547',
+  'unifunc' => 'content_5a5e0b5d808761_08886583',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82612fa9a39e2f30fe9322ba856280600bfc99b1' => 
     array (
       0 => 'C:\\wamp\\www\\github\\blog2\\admin\\admin\\template\\admin-role.html',
-      1 => 1515510660,
+      1 => 1516112730,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a54db85c3d798_85917547 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a5e0b5d808761_08886583 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -96,8 +96,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['k']->value => $_smarty_tpl->tpl_vars[
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['v']->value['type_BZ'];?>
 </td>
-				<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.php',<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
-)" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+				<td class="f-14"><!-- <a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.php',<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+)" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> --> <a title="删除" href="javascript:;" onclick="admin_role_del(this,<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 )" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		<?php
