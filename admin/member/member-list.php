@@ -69,7 +69,23 @@ class MemberList
 		$this->t->assign("searchArr",$rowS);
 	}
 
-	
+	public function member_delete($id)
+	{
+		$sqlD = "delete from member_users where id = '$id' limit 1";
+		$resultD = $this->db->query($sqlD);
+
+		if(!$resultD)
+		{
+			echo '{"deleteStat":"0","deleteText":"删除失败"}';
+			exit;
+		}
+		else
+		{
+			echo '{"deleteStat":"1","deleteText":"删除成功"}';
+			exit;
+		}
+
+	}	
 }
 
 $Member = new MemberList();
@@ -85,6 +101,10 @@ switch ($action_code)
 		$Member->member_search($namefind);
 		break;
 	
+	case 'delete':
+		$Member->member_delete($id);
+		break;
+		
 	default:
 		case 'list':
 		break;
